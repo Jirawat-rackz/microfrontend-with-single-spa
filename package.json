@@ -1,4 +1,5 @@
 {
+  "name": "microfrontend-with-single-spa",
   "private": true,
   "scripts": {
     "build": "turbo run build",
@@ -12,7 +13,6 @@
     "tsconfig": "*",
     "turbo": "latest"
   },
-  "name": "microfrontend-with-single-spa",
   "packageManager": "yarn@1.22.19",
   "workspaces": [
     "apps/*",
