@@ -1,0 +1,19 @@
+{
+  "name": "@porz-org/mfe-loader",
+  "version": "0.0.0",
+  "main": "./index.tsx",
+  "types": "./index.tsx",
+  "license": "MIT",
+  "scripts": {},
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-custom": "*",
+    "react": "*",
+    "tsconfig": "*",
+    "typescript": "^4.5.2",
+    "single-spa": "^5.9.3",
+    "single-spa-react": "^4.3.1",
+    "@types/react": "*",
+    "@types/react-dom": "*"
+  }
+}

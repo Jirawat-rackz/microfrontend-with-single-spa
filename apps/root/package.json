@@ -9,11 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@porz-org/feature-home": "*",
+    "@porz-org/mfe-loader": "*",
+    "@types/systemjs": "^6.13.3",
+    "config-mui": "*",
     "next": "^13.4.19",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "ui": "*",
-    "config-mui": "*"
+    "systemjs": "^6.14.2",
+    "ui": "*"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^13.4.19",

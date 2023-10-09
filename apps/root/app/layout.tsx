@@ -1,5 +1,6 @@
 import ThemeRegistry from "config-mui/ThemeRegistry";
 import type { Metadata } from "next";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "Create Turborepo",
@@ -13,6 +14,14 @@ type RootProps = {
 export default function RootLayout({ children }: RootProps): JSX.Element {
   return (
     <html lang="en">
+      <head>
+        <Script
+          src="/import-map.json"
+          crossOrigin="anonymous"
+          type="systemjs-importmap"
+        />
+        <meta name="importmap-type" content="systemjs-importmap" />
+      </head>
       <body>
         <ThemeRegistry>{children}</ThemeRegistry>
       </body>
