@@ -1,8 +1,8 @@
 {
-  "name": "@porz-org/feature-home",
+  "name": "@porz-org/feature-about",
   "version": "1.0.0",
   "scripts": {
-    "dev": "webpack serve --port=8081",
+    "dev": "webpack serve --port=8084",
     "start:standalone": "webpack serve --env standalone",
     "build": "concurrently pnpm:build:*",
     "build:webpack": "webpack --mode=production",
@@ -60,5 +60,5 @@
     "@types/react": "^17.0.19",
     "@types/react-dom": "^17.0.9"
   },
-  "types": "dist/porz-org-feature-home.d.ts"
+  "types": "dist/porz-org-feature-about.d.ts"
 }

@@ -1,8 +1,12 @@
 {
-    "imports": {
-        "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.9.0/lib/system/single-spa.min.js",
-        "react": "https://cdnjs.cloudflare.com/ajax/libs/react/17.0.2/umd/react.production.min.js",
-        "react-dom": "https://cdnjs.cloudflare.com/ajax/libs/react-dom/17.0.2/umd/react-dom.production.min.js",
-        "@porz-org/feature-home": "http://localhost:8080/porz-org-feature-home.js"
-    }
+  "imports": {
+    "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.9.0/lib/system/single-spa.min.js",
+    "react": "https://cdnjs.cloudflare.com/ajax/libs/react/17.0.2/umd/react.production.min.js",
+    "react-dom": "https://cdnjs.cloudflare.com/ajax/libs/react-dom/17.0.2/umd/react-dom.production.min.js",
+    "@porz-org/feature-login": "http://localhost:8080/porz-org-feature-login.js",
+    "@porz-org/feature-home": "http://localhost:8081/porz-org-feature-home.js",
+    "@porz-org/feature-service": "http://localhost:8082/porz-org-feature-service.js",
+    "@porz-org/feature-contact": "http://localhost:8083/porz-org-feature-contact.js",
+    "@porz-org/feature-about": "http://localhost:8084/porz-org-feature-about.js"
+  }
 }
