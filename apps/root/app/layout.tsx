@@ -12,7 +12,6 @@ interface RootProps {
 const menu = ["home", "service", "contact", "about"];
 
 export default function RootLayout({ children }: RootProps): JSX.Element {
-  // const [currentPage, setCurrentPage] = useState<string>("home");
   const pathname = usePathname();
 
   return (
@@ -28,27 +27,29 @@ export default function RootLayout({ children }: RootProps): JSX.Element {
       <body>
         <nav className="navbar">
           <div className="logo">App</div>
-          <div className="menu-items">
-            <ul className="nav-items">
-              {menu.map((title) => (
-                <li
-                  className={`nav-link ${
-                    pathname === `/${title}` ? "active" : ""
-                  }`}
-                  key={title}
-                >
-                  <Link
-                    href={`/${title}`}
-                    // onClick={() => {
-                    //   setCurrentPage(title);
-                    // }}
+          {pathname !== "/login" && (
+            <div className="menu-items">
+              <ul className="nav-items">
+                {menu.map((title) => (
+                  <li
+                    className={`nav-link ${
+                      pathname === `/${title}` ? "active" : ""
+                    }`}
+                    key={title}
                   >
-                    {title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+                    <Link
+                      href=""
+                      onClick={() => {
+                        window.location.href = `/${title}`;
+                      }}
+                    >
+                      {title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
           <div className="language-switch">
             <span>Language</span>
             <span>ภาษาไทย</span>
