@@ -27,6 +27,7 @@ form {
 .input-group label {
   font-weight: 600;
   margin-bottom: 8px;
+  text-align: start;
 }
 
 .input-group input {
