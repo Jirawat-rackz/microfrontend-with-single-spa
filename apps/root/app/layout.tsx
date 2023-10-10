@@ -28,37 +28,65 @@ export default function RootLayout({ children }: RootProps): JSX.Element {
         <meta content="systemjs-importmap" name="importmap-type" />
       </head>
       <body>
-        <nav className="navbar">
-          <div className="logo">App</div>
-          {pathname !== "/login" && (
-            <div className="menu-items">
-              <ul className="nav-items">
-                {menu.map((title) => (
-                  <li
-                    className={`nav-link ${
-                      pathname === `/${title}` ? "active" : ""
-                    }`}
-                    key={title}
-                  >
-                    <Link
-                      href=""
-                      onClick={() => {
-                        window.location.href = `/${title}`;
-                      }}
-                    >
-                      {title}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-          <div className="language-switch">
-            <span>Language</span>
-            <span>ภาษาไทย</span>
+        <section
+          style={{
+            borderColor: "orange",
+            textAlign: "center",
+            borderWidth: "2px",
+            borderStyle: "solid",
+            height: "100%",
+          }}
+        >
+          <div
+            style={{
+              position: "absolute",
+              right: "0",
+              color: "white",
+            }}
+          >
+            <p
+              style={{
+                backgroundColor: "orange",
+                width: "fit-content",
+                margin: "0",
+                padding: "0 4px",
+              }}
+            >
+              Root
+            </p>
           </div>
-        </nav>
-        <ThemeRegistry>{children}</ThemeRegistry>
+          <nav className="navbar">
+            <div className="logo">App</div>
+            {pathname !== "/login" && (
+              <div className="menu-items">
+                <ul className="nav-items">
+                  {menu.map((title) => (
+                    <li
+                      className={`nav-link ${
+                        pathname === `/${title}` ? "active" : ""
+                      }`}
+                      key={title}
+                    >
+                      <Link
+                        href=""
+                        onClick={() => {
+                          window.location.href = `/${title}`;
+                        }}
+                      >
+                        {title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            <div className="language-switch">
+              <span>Language</span>
+              <span>ภาษาไทย</span>
+            </div>
+          </nav>
+          <ThemeRegistry>{children}</ThemeRegistry>
+        </section>
       </body>
     </html>
   );

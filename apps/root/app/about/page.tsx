@@ -7,7 +7,7 @@ export default function Page(): JSX.Element {
     <Loader
       app={() => System.import("@porz-org/feature-about")}
       appName="@porz-org/feature-about"
-      wrapStyle={{ height: "100%", width: "100%" }}
+      wrapStyle={{ height: "calc(100% - 104px)", width: "100%" }}
     />
   );
 }

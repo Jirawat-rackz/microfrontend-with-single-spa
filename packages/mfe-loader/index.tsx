@@ -60,7 +60,38 @@ const Loader: FC<LoaderProps> = ({ app, appName, ...props }) => {
   const { isSingleSpa, isLoading, LoadedApp } = useLoadableApp(app);
 
   if (isLoading) {
-    return <div style={{ textAlign: "center" }}>Loading...</div>;
+    return (
+      <section
+        style={{
+          borderColor: "yellowgreen",
+          textAlign: "center",
+          borderWidth: "2px",
+          borderStyle: "solid",
+          height: "100%",
+        }}
+      >
+        <div
+          style={{
+            textAlign: "right",
+            color: "white",
+            display: "flex",
+            justifyContent: "flex-end",
+          }}
+        >
+          <p
+            style={{
+              backgroundColor: "yellowgreen",
+              width: "fit-content",
+              margin: "0",
+              padding: "0 4px",
+            }}
+          >
+            Loading
+          </p>
+        </div>
+        Loading...
+      </section>
+    );
   }
 
   if (!isLoading && isSingleSpa) {
