@@ -1,6 +1,6 @@
-import React, { FC, useEffect, useRef, useState } from "react";
-import { LoadAppFn, SingleSpaApp, ComposableApp } from "./types";
+import { FC, useEffect, useRef, useState } from "react";
 import SingleSpaParcel from "./SingleSpaParcel";
+import { ComposableApp, LoadAppFn, SingleSpaApp } from "./types";
 
 interface LoaderProps {
   app: LoadAppFn;
@@ -60,7 +60,7 @@ const Loader: FC<LoaderProps> = ({ app, appName, ...props }) => {
   const { isSingleSpa, isLoading, LoadedApp } = useLoadableApp(app);
 
   if (isLoading) {
-    return <>Loading...</>;
+    return <div style={{ textAlign: "center" }}>Loading...</div>;
   }
 
   if (!isLoading && isSingleSpa) {

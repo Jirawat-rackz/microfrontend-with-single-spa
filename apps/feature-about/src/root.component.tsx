@@ -1,3 +1,3 @@
 export default function Root(props) {
-  return <section>About</section>;
+  return <section style={{ textAlign: "center" }}>About</section>;
 }
