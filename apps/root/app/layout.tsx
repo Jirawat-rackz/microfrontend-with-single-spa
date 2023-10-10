@@ -13,6 +13,9 @@ const menu = ["home", "service", "contact", "about"];
 
 export default function RootLayout({ children }: RootProps): JSX.Element {
   const pathname = usePathname();
+  if (pathname === "/") {
+    window.location.href = "/login";
+  }
 
   return (
     <html lang="en">
