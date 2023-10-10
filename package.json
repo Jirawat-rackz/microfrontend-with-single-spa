@@ -3,7 +3,8 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
-    "dev": "turbo run dev",
+    "dev:host": "turbo run dev --parallel --filter='./apps/feature-*' --filter='./apps/host' --filter='./apps/nav-layout'",
+    "dev:root": "turbo run dev --parallel --filter='./apps/feature-*' --filter='./apps/root'",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
@@ -21,6 +22,10 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@mui/material": "^5.14.12"
+    "@mui/material": "^5.14.12",
+    "@types/react": "^18.2.27",
+    "@types/react-dom": "^18.2.12",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }

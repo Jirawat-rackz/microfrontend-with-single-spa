@@ -68,14 +68,7 @@ export default function RootLayout({ children }: RootProps): JSX.Element {
                         }`}
                         key={title}
                       >
-                        <Link
-                          href=""
-                          onClick={() => {
-                            window.location.href = `/${title}`;
-                          }}
-                        >
-                          {title}
-                        </Link>
+                        <Link href={`/${title}`}>{title}</Link>
                       </li>
                     ))}
                   </ul>

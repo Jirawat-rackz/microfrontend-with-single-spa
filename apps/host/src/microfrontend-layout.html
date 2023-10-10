@@ -1,0 +1,40 @@
+<single-spa-router>
+  <!--
+
+    This is the single-spa Layout Definition for your microfrontends.
+    See https://single-spa.js.org/docs/layout-definition/ for more information.
+
+  -->
+
+  <!-- Example layouts you might find helpful:
+
+  <nav>
+    <application name="@org/navbar"></application>
+  </nav>
+  <route path="settings">
+    <application name="@org/settings"></application>
+  </route>
+
+  -->
+
+  <main>
+    <route path="login">
+      <application name="@porz-org/feature-login"></application>
+    </route>
+    <nav>
+      <application name="@porz-org/nav-layout"></application>
+      <route path="home">
+        <application name="@porz-org/feature-home"></application>
+      </route>
+      <route path="service">
+        <application name="@porz-org/feature-service"></application>
+      </route>
+      <route path="contact">
+        <application name="@porz-org/feature-contact"></application>
+      </route>
+      <route path="about">
+        <application name="@porz-org/feature-about"></application>
+      </route>
+    </nav>
+  </main>
+</single-spa-router>
