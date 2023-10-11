@@ -7,7 +7,7 @@ on:
 
 env:
   ORGANIZATION: '@porz-org'
-  DEVELOPER_BUCKET: 'porz-developer'
+  DEVELOPER_BUCKET: 'microfrontend-bucket-dev'
 
 jobs:
   build-nav-layout:
