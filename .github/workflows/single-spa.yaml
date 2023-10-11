@@ -53,7 +53,7 @@ jobs:
 
       - name: Upload bundle file to GCS
         run: |
-          gsutil cp -rZ dist gs://$DEPLOYER_BUCKET/nav-layout/$GITHUB_SHA
+          gsutil cp -rZ dist gs://$DEVELOPER_BUCKET/nav-layout/$GITHUB_SHA
 
       - name: Delete Artifact
         uses: geekyeggo/delete-artifact@v1
