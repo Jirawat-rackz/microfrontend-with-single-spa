@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  ORGANIZATION: '@porz-org'
+  ORGANIZATION: 'porz-org'
   DEVELOPER_BUCKET: 'microfrontend-bucket-dev'
 
 jobs:
@@ -22,7 +22,10 @@ jobs:
           node-version: '20.x'
           
       - name: Install dependencies
-        run: yarn workspace ${ORGANIZATION}/nav-layout install
+        run: yarn workspace @${ORGANIZATION}/nav-layout install
+
+      - name: Build nav-layout
+        run: yarn workspace @${ORGANIZATION}/nav-layout build:webpack
 
       - name: Archive production artifacts
         uses: actions/upload-artifact@v3
