@@ -22,7 +22,7 @@ jobs:
           node-version: '20.x'
           
       - name: Install dependencies
-        run: yarn workspace @${ORGANIZATION}/nav-layout install
+        run: yarn workspace @$ORGANIZATION/nav-layout install
 
       - name: Build nav-layout
         run: yarn workspace @${ORGANIZATION}/nav-layout build:webpack
@@ -31,7 +31,8 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: nav-layout
-          path: apps/nav-layout/dist/${ORGANIZATION}-nav-layout.js
+          path: 'apps/nav-layout/dist/$ORGANIZATION-nav-layout.js'
+          if-no-files-found: error
   
   deploy-nav-layout:
     runs-on: ubuntu-latest
