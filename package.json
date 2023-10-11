@@ -1,10 +1,10 @@
 {
   "name": "microfrontend-with-single-spa",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "build": "turbo run build",
-    "dev:host": "turbo run dev --parallel --filter='./apps/feature-*' --filter='./apps/host' --filter='./apps/nav-layout'",
-    "dev:root": "turbo run dev --parallel --filter='./apps/feature-*' --filter='./apps/root'",
+    "dev": "turbo run dev --parallel",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
