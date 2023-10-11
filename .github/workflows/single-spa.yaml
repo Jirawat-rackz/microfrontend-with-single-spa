@@ -31,7 +31,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: nav-layout
-          path: 'apps/nav-layout/dist/$ORGANIZATION-nav-layout.js'
+          path: apps/nav-layout/dist
           if-no-files-found: error
   
   deploy-nav-layout:
