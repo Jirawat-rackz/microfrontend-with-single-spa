@@ -46,6 +46,10 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: nav-layout
+          path: nav-layout
+
+      - name: Unzip artifact
+        run: zip -r nav-layout.zip nav-layout/
 
       - name: Login GCP
         uses: google-github-actions/setup-gcloud@v0
@@ -56,7 +60,7 @@ jobs:
 
       - name: Upload bundle file to GCS
         run: |
-          gsutil cp -rZ nav-layout gs://$DEVELOPER_BUCKET/nav-layout/$GITHUB_SHA
+          gsutil cp -r nav-layout gs://$DEVELOPER_BUCKET
 
       - name: Delete Artifact
         uses: geekyeggo/delete-artifact@v1
