@@ -60,7 +60,7 @@ jobs:
 
       - name: Upload bundle file to GCS
         run: |
-          gsutil cp -r host gs://$DEVELOPER_BUCKET/host
+          gsutil cp -r host gs://$DEVELOPER_BUCKET
 
       - name: Delete Artifact
         uses: geekyeggo/delete-artifact@v1
