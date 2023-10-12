@@ -4,6 +4,6 @@
   "compilerOptions": {
     "declarationDir": "dist"
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "server.js"],
   "exclude": ["src/**/*.test*"]
 }
