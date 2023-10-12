@@ -39,10 +39,13 @@ body {
 }
 
 .nav-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   width: 120px;
   text-align: center;
-  height: 56px;
+  height: 40px;
 }
 
 .nav-link a {
