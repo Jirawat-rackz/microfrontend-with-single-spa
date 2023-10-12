@@ -37,7 +37,29 @@ export default function PrimaryNavigation() {
       </div>
       <nav className="navbar">
         <div className="logo">App</div>
-        {pathname !== "/login" && (
+        {/* {pathname !== "/login" && (
+          <>
+            <div className="menu-items">
+              <ul className="nav-items">
+                {menu.map((title) => (
+                  <li
+                    className={`nav-link ${
+                      pathname === `/${title}` ? "active" : ""
+                    }`}
+                    key={title}
+                    onClick={() => navigate(`/${title}`)}
+                  >
+                    {title}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <a className="logout-button" href="/login">
+              ออกจากระบบ
+            </a>
+          </>
+        )} */}
+        {((pathname === "/" || pathname === "/login") && <></>) || (
           <>
             <div className="menu-items">
               <ul className="nav-items">
