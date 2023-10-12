@@ -22,10 +22,10 @@ jobs:
           node-version: '20.x'
           
       - name: Install dependencies
-        run: yarn workspace @porz-org/root-config install
+        run: yarn workspace @$ORGANIZATION/root-config install
 
       - name: Build host
-        run: yarn workspace @porz-org/root-config build:webpack
+        run: yarn workspace @$ORGANIZATION/root-config build:webpack
 
       - name: Archive production artifacts
         uses: actions/upload-artifact@v3
