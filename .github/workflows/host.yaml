@@ -8,6 +8,8 @@ on:
 env:
   ORGANIZATION: 'porz-org'
   DEVELOPER_BUCKET: 'microfrontend-bucket-dev'
+  REGION: asia-southeast1
+  MIN_INSTANCES: 0
 
 jobs:
   build-host:
@@ -49,7 +51,9 @@ jobs:
           path: host
 
       - name: Unzip artifact
-        run: zip -r host.zip host/
+        run: |
+          zip -r host.zip host/
+          cp host/ application-shell/
 
       - name: Login GCP
         uses: google-github-actions/setup-gcloud@v0
@@ -61,6 +65,33 @@ jobs:
       - name: Upload bundle file to GCS
         run: |
           gsutil cp -r host gs://$DEVELOPER_BUCKET
+
+
+      - name: Configure Docker
+        run: gcloud auth configure-docker --quiet
+
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set Image Name
+        id: set_image_name
+        run: |
+          echo "IMAGE_NAME=asia.gcr.io/${{ secrets.GCLOUD_PROJECT_ID }}/application-shell:$GITHUB_SHA" >> $GITHUB_ENV
+      
+      - name: Build Image
+        run: |
+          docker build -t ${{ env.IMAGE_NAME }} ./application-shell
+          
+      - name: Push Docker image
+        run: |
+          docker push ${{ env.IMAGE_NAME }}
+
+      - name: Deploy Docker image
+        run: |
+          gcloud run deploy application-shell \
+            --image ${{ env.IMAGE_NAME }} \
+            --region $REGION \
+            --min-instances $MIN_INSTANCES
 
       - name: Delete Artifact
         uses: geekyeggo/delete-artifact@v1
