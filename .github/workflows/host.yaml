@@ -40,7 +40,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       packages: write
-    
     needs: 
      - build-host
     steps:
@@ -53,7 +52,6 @@ jobs:
       - name: Unzip artifact
         run: |
           zip -r host.zip host/
-          cp host/ application-shell/
 
       - name: Login GCP
         uses: google-github-actions/setup-gcloud@v0
@@ -65,7 +63,6 @@ jobs:
       - name: Upload bundle file to GCS
         run: |
           gsutil cp -r host gs://$DEVELOPER_BUCKET
-
 
       - name: Configure Docker
         run: gcloud auth configure-docker --quiet
