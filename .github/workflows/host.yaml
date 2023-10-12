@@ -88,7 +88,10 @@ jobs:
           gcloud run deploy application-shell \
             --image ${{ env.IMAGE_NAME }} \
             --region $REGION \
-            --min-instances $MIN_INSTANCES
+            --port 3000 \
+            --min-instances $MIN_INSTANCES \
+            --platform managed \
+            --allow-unauthenticated
 
       - name: Delete Artifact
         uses: geekyeggo/delete-artifact@v1

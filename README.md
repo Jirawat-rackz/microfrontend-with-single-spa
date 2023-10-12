@@ -5,6 +5,8 @@ this repository that apply concept of micro-frontends by using
  - Client-Side Composition (with single-spa)
  - Client-Side Routing (with single-spa + react-router-dom)
 
+DEMO: https://application-shell-h2brk4xmka-as.a.run.app/
+
 ## How to run locally
 ```bash
 
