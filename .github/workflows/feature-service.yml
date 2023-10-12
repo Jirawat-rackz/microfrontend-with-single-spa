@@ -1,4 +1,4 @@
-name: deploy microfrontends with single-spa
+name: deploy microfrontends feature-service with single-spa
 
 on:
   push:
@@ -10,7 +10,7 @@ env:
   DEVELOPER_BUCKET: 'microfrontend-bucket-dev'
 
 jobs:
-  build-nav-layout:
+  build-feature-service:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -22,34 +22,34 @@ jobs:
           node-version: '20.x'
           
       - name: Install dependencies
-        run: yarn workspace @$ORGANIZATION/nav-layout install
+        run: yarn workspace @$ORGANIZATION/feature-service install
 
-      - name: Build nav-layout
-        run: yarn workspace @${ORGANIZATION}/nav-layout build:webpack
+      - name: Build feature-service
+        run: yarn workspace @${ORGANIZATION}/feature-service build:webpack
 
       - name: Archive production artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: nav-layout
-          path: apps/nav-layout/dist
+          name: feature-service
+          path: apps/feature-service/dist
           if-no-files-found: error
   
-  deploy-nav-layout:
+  deploy-feature-service:
     runs-on: ubuntu-latest
     permissions:
       packages: write
     
     needs: 
-     - build-nav-layout
+     - build-feature-service
     steps:
       - name: Download a single artifact
         uses: actions/download-artifact@v3
         with:
-          name: nav-layout
-          path: nav-layout
+          name: feature-service
+          path: feature-service
 
       - name: Unzip artifact
-        run: zip -r nav-layout.zip nav-layout/
+        run: zip -r feature-service.zip feature-service/
 
       - name: Login GCP
         uses: google-github-actions/setup-gcloud@v0
@@ -60,10 +60,9 @@ jobs:
 
       - name: Upload bundle file to GCS
         run: |
-          gsutil cp -r nav-layout gs://$DEVELOPER_BUCKET
+          gsutil cp -r feature-service gs://$DEVELOPER_BUCKET/feature-service/$GITHUB_SHA
 
       - name: Delete Artifact
         uses: geekyeggo/delete-artifact@v1
         with:
-          name: nav-layout
-      
+          name: feature-service 

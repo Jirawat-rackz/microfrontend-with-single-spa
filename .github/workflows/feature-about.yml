@@ -1,0 +1,68 @@
+name: deploy microfrontends feature-about with single-spa
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  ORGANIZATION: 'porz-org'
+  DEVELOPER_BUCKET: 'microfrontend-bucket-dev'
+
+jobs:
+  build-feature-about:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.x'
+          
+      - name: Install dependencies
+        run: yarn workspace @$ORGANIZATION/feature-about install
+
+      - name: Build feature-about
+        run: yarn workspace @${ORGANIZATION}/feature-about build:webpack
+
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: feature-about
+          path: apps/feature-about/dist
+          if-no-files-found: error
+  
+  deploy-feature-about:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+    
+    needs: 
+     - build-feature-about
+    steps:
+      - name: Download a single artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: feature-about
+          path: feature-about
+
+      - name: Unzip artifact
+        run: zip -r feature-about.zip feature-about/
+
+      - name: Login GCP
+        uses: google-github-actions/setup-gcloud@v0
+        with:
+          project_id: ${{ secrets.GCLOUD_PROJECT_ID }}
+          service_account_email: ${{ secrets.GCLOUD_EMAIL }}
+          service_account_key: ${{ secrets.GCLOUD_SERVICE_ACCOUNT }}
+
+      - name: Upload bundle file to GCS
+        run: |
+          gsutil cp -r feature-about gs://$DEVELOPER_BUCKET/feature-about/$GITHUB_SHA
+
+      - name: Delete Artifact
+        uses: geekyeggo/delete-artifact@v1
+        with:
+          name: feature-about 

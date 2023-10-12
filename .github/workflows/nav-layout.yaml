@@ -1,0 +1,68 @@
+name: deploy microfrontends nav-layout with single-spa
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  ORGANIZATION: 'porz-org'
+  DEVELOPER_BUCKET: 'microfrontend-bucket-dev'
+
+jobs:
+  build-nav-layout:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.x'
+          
+      - name: Install dependencies
+        run: yarn workspace @$ORGANIZATION/nav-layout install
+
+      - name: Build nav-layout
+        run: yarn workspace @${ORGANIZATION}/nav-layout build:webpack
+
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: nav-layout
+          path: apps/nav-layout/dist
+          if-no-files-found: error
+  
+  deploy-nav-layout:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+    
+    needs: 
+     - build-nav-layout
+    steps:
+      - name: Download a single artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: nav-layout
+          path: nav-layout
+
+      - name: Unzip artifact
+        run: zip -r nav-layout.zip nav-layout/
+
+      - name: Login GCP
+        uses: google-github-actions/setup-gcloud@v0
+        with:
+          project_id: ${{ secrets.GCLOUD_PROJECT_ID }}
+          service_account_email: ${{ secrets.GCLOUD_EMAIL }}
+          service_account_key: ${{ secrets.GCLOUD_SERVICE_ACCOUNT }}
+
+      - name: Upload bundle file to GCS
+        run: |
+          gsutil cp -r nav-layout gs://$DEVELOPER_BUCKET/nav-layout/$GITHUB_SHA
+
+      - name: Delete Artifact
+        uses: geekyeggo/delete-artifact@v1
+        with:
+          name: nav-layout 
